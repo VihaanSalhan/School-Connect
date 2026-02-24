@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolConnect Feed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .feed-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 0 10px;
+        }
+
+        .post {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .post h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+
+        .post p {
+            margin: 0;
+            color: #555;
+        }
+
+        .new-post {
+            background-color: white;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .new-post input, .new-post textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .new-post button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .new-post button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        SchoolConnect Feed
+    </header>
+
+    <div class="new-post">
+        <input type="text" id="postTitle" placeholder="Post title">
+        <textarea id="postContent" rows="3" placeholder="What's on your mind?"></textarea>
+        <button onclick="addPost()">Post</button>
+    </div>
+
+    <div class="feed-container" id="feed">
+        <!-- Posts will appear here -->
+    </div>
+
+    <script>
+        function addPost() {
+            const title = document.getElementById('postTitle').value;
+            const content = document.getElementById('postContent').value;
+
+            if(title && content) {
+                const feed = document.getElementById('feed');
+
+                const postDiv = document.createElement('div');
+                postDiv.className = 'post';
+
+                postDiv.innerHTML = `<h3>${title}</h3><p>${content}</p>`;
+                feed.prepend(postDiv); // add on top
+
+                // Clear inputs
+                document.getElementById('postTitle').value = '';
+                document.getElementById('postContent').value = '';
+            } else {
+                alert('Please fill both fields!');
+            }
+        }
+    </script>
+</body>
+</html>
